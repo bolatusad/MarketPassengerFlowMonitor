@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<link type="text/css" rel="stylesheet" href="<%=basePath %>bootstrap-3.3.7/dist/css/bootstrap.min.css"/>
+<%--<link type="text/css" rel="stylesheet" href="<%=basePath %>bootstrap-3.3.7/dist/css/bootstrap-theme.css"/>--%>
+<link type="text/css" rel="stylesheet" href="<%=basePath %>css/base.css"/>
+<%--<link type="text/css" rel="stylesheet" href="<%=basePath %>css/theme.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="<%=basePath %>css/font-awesome.css"/>--%>
+<script type="text/javascript" src="<%=basePath %>js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+<%--<link type="text/css" rel="stylesheet" href="<%=basePath %>layui/css/layui.css"/>--%>
+<%--<link type="text/css" rel="stylesheet" href="<%=basePath %>css/base.css"/>--%>
+<%--<script type="text/javascript" src="<%=basePath %>js/jquery.min.js"></script>--%>
+<%--<script type="text/javascript" src="<%=basePath %>layui/layui.js"></script>--%>
+

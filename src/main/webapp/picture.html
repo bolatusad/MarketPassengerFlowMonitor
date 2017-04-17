@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>摄像头</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-8">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>测试</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="carousel.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="carousel.html#">选项1</a>
+                            </li>
+                            <li><a href="carousel.html#">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <img id="video" class="img-responsive" src="/img/p1.jpg">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 播放视频 -->
+        <!--<div class="col-sm-8">-->
+            <!--<video width="320<source>" height="240" controls="controls">-->
+                <!--<source src="video/test.mp4" type="video/mp4" />-->
+            <!--</video>-->
+        <!--</div>-->
+
+    </div>
+
+    <!-- 热力图 -->
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>热力图</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="carousel.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="carousel.html#">选项1</a>
+                            </li>
+                            <li><a href="carousel.html#">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <!--<img id="heatmap" class="img-responsive" src="/img/p1.jpg">-->
+                    <div style="height: 500px;" id="heatmap"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script type="text/javascript" src="js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="js/bootstrap.min.js?v=3.3.6"></script>
+<script type="text/javascript" src="js/heatmap.js"></script>
+
+
+<script type="text/javascript">
+    // 创建一个heatmap实例对象
+    // “h337” 是heatmap.js全局对象的名称.可以使用它来创建热点图实例
+    // 这里直接指定热点图渲染的div了.heatmap支持自定义的样式方案,网页外包接活具体可看官网api
+    var heatmapInstance = h337.create({
+        container: document.querySelector('#heatmap'),
+    });
+    //构建一些随机数据点,网页切图价格这里替换成你的业务数据
+    var points = [];
+    var max = 0;
+    var width = 600;
+    var height = 400;
+    var len = 200;
+    while (len--) {
+        var val = Math.floor(Math.random()*100);
+        max = Math.max(max, val);
+        var point = {
+            x: Math.floor(Math.random()*width),
+            y: Math.floor(Math.random()*height),
+            value: val
+        };
+        points.push(point);
+    }
+    var data = {
+        max: max,
+        data: points
+    };
+    console.log(data);
+     //因为data是一组数据,web切图报价所以直接setData
+//    heatmapInstance.setData(data); //数据绑定还可以使用
+    heatmapInstance.setData(data);
+</script>
+
+
+<script type="text/javascript">
+    var arrPicture = new Array();
+    $.ajax({
+        url:"/video/picture/1",
+        type:"get",
+        success:function (data) {
+            for(var i =0;i<data.length;i++){
+                arrPicture.push(data[i]);
+            }
+        }
+    });
+    console.log(arrPicture);
+
+    //替换图片
+    setInterval(function () {
+        $("#video").attr("src",arrPicture.shift());
+    },200)
+
+    //判断图片缓存是否过低
+    setInterval(function () {
+        if(arrPicture.length<5){
+            $.ajax({
+                url:"/video/picture/1",
+                type:"get",
+                success:function (data) {
+                    for(var i =0;i<data.length;i++){
+                        arrPicture.push(data[i]);
+                    }
+                }
+            });
+        }
+    },30)
+</script>
+
+
+</body>
+
+</html>
