@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.xupt.internetplus.dao.PictureDao">
+	
+	<select id="listAllPicture" resultType="com.xupt.internetplus.bean.Picture"  >
+		select * from picture
+	</select>
+	
+	<!-- 查询最新的照片 -->
+	<select id="listNewPicture" resultType="com.xupt.internetplus.bean.Picture"  >
+		SELECT * FROM picture WHERE createtime=(SELECT MAX(createtime) FROM picture)
+	</select>
+	
+</mapper>

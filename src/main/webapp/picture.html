@@ -141,7 +141,8 @@
 <script type="text/javascript">
     var arrPicture = new Array();
     $.ajax({
-        url:"/video/picture/1",
+       /*  url:"/video/picture/1", */
+        url:"/video/picture/",
         type:"get",
         success:function (data) {
             for(var i =0;i<data.length;i++){
@@ -160,7 +161,8 @@
     setInterval(function () {
         if(arrPicture.length<5){
             $.ajax({
-                url:"/video/picture/1",
+               /* url:"/video/picture/1", */
+                url:"/video/picture/",
                 type:"get",
                 success:function (data) {
                     for(var i =0;i<data.length;i++){
