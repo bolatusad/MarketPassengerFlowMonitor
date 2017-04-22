@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50140
 File Encoding         : 65001
 
-Date: 2017-04-17 19:52:24
+Date: 2017-04-22 23:39:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,16 +24,22 @@ CREATE TABLE `picture` (
   `path` varchar(255) NOT NULL COMMENT '图片路径',
   `camera` tinyint(4) NOT NULL COMMENT '摄像头',
   `createtime` datetime NOT NULL COMMENT '时间',
+  `localpath` varchar(255) DEFAULT NULL COMMENT '本地地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of picture
 -- ----------------------------
-INSERT INTO `picture` VALUES ('1', 'C:\\Users\\WangZelan\\git\\picture\\13587497762e9532a36c8ddf', '1', '2017-04-17 19:51:05');
-INSERT INTO `picture` VALUES ('2', 'C:\\Users\\WangZelan\\git\\picture\\275583047c405d3eb290f61e', '1', '2017-04-17 19:51:30');
-INSERT INTO `picture` VALUES ('3', 'C:\\Users\\WangZelan\\git\\picture\\84F99D937352538F891B29FF8EF7B04F', '1', '2017-04-17 19:51:48');
-INSERT INTO `picture` VALUES ('4', 'C:\\Users\\WangZelan\\git\\picture\\u=3150332934,3826441133&fm=23&gp=0', '1', '2017-04-17 19:52:04');
+INSERT INTO `picture` VALUES ('1', '/img/profile.jpg', '1', '2017-04-17 19:51:05', 'C:\\Users\\WangZelan\\git\\picture\\profile.jpg');
+INSERT INTO `picture` VALUES ('2', '/img/profile_small.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\profile_small.jpg');
+INSERT INTO `picture` VALUES ('3', '/img/p1.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\p1.jpg');
+INSERT INTO `picture` VALUES ('4', '/img/a5.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('5', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('6', '6', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('7', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('8', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('9', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
 
 -- ----------------------------
 -- Table structure for record
@@ -47,7 +53,7 @@ CREATE TABLE `record` (
   `detection_y` double NOT NULL COMMENT '检测位置(中心点坐标y)',
   `detection_w` double NOT NULL COMMENT '检测位置(范围框长宽w)',
   `detection_h` double NOT NULL COMMENT '检测位置(范围框长宽h)',
-  `gender` varchar(32) DEFAULT NULL COMMENT '性别',
+  `gender` tinyint(1) DEFAULT NULL COMMENT '性别 1男 2女',
   `age` int(11) DEFAULT NULL COMMENT '年龄',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='视频检测日志表';
@@ -55,10 +61,12 @@ CREATE TABLE `record` (
 -- ----------------------------
 -- Records of record
 -- ----------------------------
-INSERT INTO `record` VALUES ('1', '2017-04-15 22:14:55', 'main', '100', '96', '20', '20.3', '男', '20');
-INSERT INTO `record` VALUES ('2', '2017-04-15 22:14:55', 'main', '102', '25', '20', '20', '男', '30');
-INSERT INTO `record` VALUES ('3', '2017-04-15 22:14:55', 'main', '50', '60', '20', '20', '男', '25');
-INSERT INTO `record` VALUES ('4', '2017-04-15 23:54:37', 'ddd', '60', '150', '20', '20', '女', '26');
+INSERT INTO `record` VALUES ('1', '2017-04-15 22:14:55', 'main', '100', '96', '20', '20.3', '1', '20');
+INSERT INTO `record` VALUES ('2', '2017-04-15 22:14:55', 'main', '102', '25', '20', '20', '1', '30');
+INSERT INTO `record` VALUES ('3', '2017-04-15 22:14:55', 'main', '50', '60', '20', '20', '2', '25');
+INSERT INTO `record` VALUES ('4', '2017-04-15 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
+INSERT INTO `record` VALUES ('5', '2017-04-22 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
+INSERT INTO `record` VALUES ('6', '2017-04-23 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
 
 -- ----------------------------
 -- Table structure for t_user
