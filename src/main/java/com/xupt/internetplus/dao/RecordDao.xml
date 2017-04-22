@@ -17,6 +17,12 @@
 		from
 			record
 	</select>
+	<select id="listSexRecord" resultType="com.xupt.internetplus.bean.Record"  >
+		select gender,count(gender) as count from record group by gender
+	</select>
+	<select id="listTotalPeopleRecord" resultType="com.xupt.internetplus.bean.Record"  >
+		select detection_time as detectionTime,count(1) as count from record where detection_time=(SELECT MAX(detection_time) FROM record)
+	</select>
 	
 	<!--<insert id="addTestUser" parameterType="com.xupt.zxh.graduation.project.bean.TestUser">-->
 		<!--INSERT INTO user (username,password) VALUES(#{username},#{password})-->

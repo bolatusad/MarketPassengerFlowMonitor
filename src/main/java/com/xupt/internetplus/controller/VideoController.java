@@ -1,7 +1,11 @@
 package com.xupt.internetplus.controller;
 
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Queue;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,8 @@ import com.xupt.internetplus.service.PictrueService;
 @RequestMapping(value = "/video")
 public class VideoController {
 
+	@Autowired
+	private HttpServletResponse response;
 	@Autowired
 	private PictrueService pictrueService;
 
@@ -42,13 +48,32 @@ public class VideoController {
 	// }
 	// return imgs;
 	// }
-	@RequestMapping(value = "/picture/", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/path", method = RequestMethod.GET)
+	public @ResponseBody void picture(String path) throws Exception {
+		System.out.println(path);
+		FileInputStream inputStream = new FileInputStream(path);
+		int i = inputStream.available();
+		// byte数组用于存放图片字节数据
+		byte[] buff = new byte[i];
+		inputStream.read(buff);
+		// 记得关闭输入流
+		inputStream.close();
+		// 设置发送到客户端的响应内容类型
+		response.setContentType("image/*");
+		OutputStream out = response.getOutputStream();
+		out.write(buff);
+		// 关闭响应输出流
+		out.close();
+	}
+
+	@RequestMapping(value = "/picture", method = RequestMethod.GET)
 	public @ResponseBody List<String> getPicture() {
 		List<Picture> pictures = Lists.newArrayList();
 		pictures = pictrueService.listNewPicture();
 		List<String> imgs = Lists.newArrayList();
 		for (Picture picture : pictures) {
-			imgs.add(picture.getPath());
+			imgs.add(picture.getLocalPath());
 		}
 		return imgs;
 	}

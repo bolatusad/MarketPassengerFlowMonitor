@@ -154,8 +154,8 @@
 
     //替换图片
     setInterval(function () {
-        $("#video").attr("src",arrPicture.shift());
-    },200)
+        $("#video").attr("src","/video/path?path="+arrPicture.shift());
+    },100)
 
     //判断图片缓存是否过低
     setInterval(function () {
@@ -171,7 +171,7 @@
                 }
             });
         }
-    },30)
+    },50)
 </script>
 
 

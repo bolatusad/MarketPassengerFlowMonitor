@@ -1,17 +1,17 @@
 package com.xupt.internetplus.eunm;
 
-public enum PictureEunm {
-	MALE(0, "男"),
+public enum SexEunm {
+	MALE(1, "男"),
 
-	FAMALE(1, "女");
+	FAMALE(2, "女");
 
-	private PictureEunm(Integer code, String message) {
+	private SexEunm(Integer code, String message) {
 		this.code = code;
 		this.message = message;
 	}
 
-	public static PictureEunm getEnum(Integer code) {
-		for (PictureEunm enumValue : PictureEunm.values()) {
+	public static SexEunm getEnum(Integer code) {
+		for (SexEunm enumValue : SexEunm.values()) {
 			if (enumValue.getCode().equals(code))
 				return enumValue;
 		}
@@ -19,7 +19,7 @@ public enum PictureEunm {
 	}
 
 	public static Integer[] getCodes() {
-		PictureEunm[] values = PictureEunm.values();
+		SexEunm[] values = SexEunm.values();
 		Integer[] result = new Integer[values.length];
 		for (int i = 0; i < values.length; i++) {
 			result[i] = values[i].getCode();

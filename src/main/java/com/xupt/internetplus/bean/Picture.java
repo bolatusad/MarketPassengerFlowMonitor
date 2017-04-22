@@ -5,6 +5,15 @@ public class Picture {
 	private String path;
 	private Integer camera;
 	private String createTime;
+	private String localPath;
+
+	public String getLocalPath() {
+		return localPath;
+	}
+
+	public void setLocalPath(String localPath) {
+		this.localPath = localPath;
+	}
 
 	public Integer getId() {
 		return id;
