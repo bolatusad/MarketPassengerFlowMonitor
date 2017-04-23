@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
-import com.xupt.internetplus.bean.RecordSex;
+import com.xupt.internetplus.bean.RecordCount;
 import com.xupt.internetplus.bean.RecordVO;
 
 /**
@@ -31,7 +31,9 @@ public interface RecordService {
 	 * 
 	 * @return
 	 */
-	List<RecordSex> listSexRecord();
+	List<RecordCount> listSexRecord();
+
+	List<RecordCount> listAgeRecord();
 
 	List<PassengerFlow> listTotalPeopleRecord();
 }

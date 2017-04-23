@@ -27,5 +27,7 @@ public interface RecordDao {
 	 */
 	List<Record> listSexRecord();
 
+	List<Record> listAgeRecord();
+
 	List<Record> listTotalPeopleRecord();
 }

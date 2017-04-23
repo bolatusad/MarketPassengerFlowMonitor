@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
-import com.xupt.internetplus.bean.RecordSex;
+import com.xupt.internetplus.bean.RecordCount;
 import com.xupt.internetplus.bean.RecordVO;
 import com.xupt.internetplus.service.RecordService;
 import com.xupt.internetplus.util.ResponseInfo;
@@ -39,8 +39,17 @@ public class RecordController {
 			"application/json;charset=UTF-8" })
 	public @ResponseBody ResponseInfo getSexRecord() {
 		ResponseInfo responseInfo = new ResponseInfo();
-		List<RecordSex> recordSexs = recordService.listSexRecord();
+		List<RecordCount> recordSexs = recordService.listSexRecord();
 		responseInfo.setData(recordSexs);
+		return responseInfo;
+	}
+
+	@RequestMapping(value = "/getAgeRecord", method = RequestMethod.GET, produces = {
+			"application/json;charset=UTF-8" })
+	public @ResponseBody ResponseInfo getAgeRecord() {
+		ResponseInfo responseInfo = new ResponseInfo();
+		List<RecordCount> recordAges = recordService.listAgeRecord();
+		responseInfo.setData(recordAges);
 		return responseInfo;
 	}
 

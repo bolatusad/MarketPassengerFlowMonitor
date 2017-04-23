@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div class="echarts" id="echarts-scatter-chart"></div>
+                        <div class="echarts" id="echarts-my5"></div>
                     </div>
                 </div>
             </div>
@@ -525,7 +525,7 @@
         };
 //        scatterChart.setOption(option1);
 
-       /*  setInterval(function (){
+		function getRecord(){
             $.ajax({
                 url:"/record/getAllRecord",
                 type:"get",
@@ -544,10 +544,13 @@
 //                    option1.series[0].data = [[161.2, 51.6,20,'男'], [167.5, 59.0,20,'男'], [159.5, 49.2,20,'男'], [157.0, 63.0,20,'男'], [155.8, 53.6,20,'男']];
                     option1.series[0].data = datas;
                     scatterChart.setOption(option1);
-                    console.log(data);
                 }
             });
-        }, 2000); */
+        }
+		getRecord();
+        setInterval(function (){
+    	   getRecord();
+       }, 2000); 
         
         var scatterChart1 = echarts.init(document.getElementById("echarts-my3"));
         var option2 = {
@@ -563,7 +566,7 @@
         	    legend: {
         	        orient: 'vertical',
         	        left: 'left',
-        	        data: ['男','女']
+        	        data: []
         	    },
         	    series : [
         	        {
@@ -571,7 +574,7 @@
         	            type: 'pie',
         	            radius : '55%',
         	            center: ['50%', '60%'],
-        	            data:[],
+        	            data:[],/* {value:1548, name:'搜索引擎'} */
         	            itemStyle: {
         	                emphasis: {
         	                    shadowBlur: 10,
@@ -591,45 +594,42 @@
                  success:function (data) {
                      var datas = [];
                      for(var i = 0;i<data.data.length;i++){
-                         var persons = [];
-                         persons.push(data.data[i].count);
-                         persons.push(data.data[i].gender);
-                         datas.push(persons);
+                      /*    var persons = [];
+                         persons.push(data.data[i].value);
+                         persons.push(data.data[i].name); 
+                         datas.push(persons); */
+                         datas.push(data.data[i].name);
                      }
+                     
+                     option2.legend.data = datas;
 
 //                     option1.series[0].data = [[161.2, 51.6,20,'男'], [167.5, 59.0,20,'男'], [159.5, 49.2,20,'男'], [157.0, 63.0,20,'男'], [155.8, 53.6,20,'男']];
-                     option2.series[0].data = datas;
+                     option2.series[0].data = data.data;
                      scatterChart1.setOption(option2);
-                     console.log(data);
                  }
              });
         }
         
         getSexRecord();
         
-        /* setInterval(function (){
+        setInterval(function (){
            getSexRecord();
         }, 2000);
- */
+ 
         var scatterChart2 = echarts.init(document.getElementById("echarts-my4"));
         var datas = [];
         var  option3 = {
                 title: {
-                    text: '微博情感分析',
+                    text: '人流量统计',
                     subtext:'',
                     left:'center'
                 },
-                /*tooltip: {
-                    trigger: 'axis',
+                tooltip: {
                     formatter: function (params) {
-                        params = params[0];
-                        console.log(params.data);
-                        return "邮箱:"+params.data.email+ ' <br> 积极指数:' + params.value[1];
-                    },
-                    axisPointer: {
-                        animation: true
+                    	
+                        return "时间："+params.value[0]+"<br>人数："+ params.value[1];
                     }
-                },*/
+                },
                 xAxis: {
                     type: 'time',
                     name:'日期',
@@ -638,8 +638,6 @@
                     }
                 },
                 yAxis: {
-                    max:1,
-                    min:0,
                     type: 'value',
                     name:'积极指数',
                     boundaryGap: [0, '100%'],
@@ -657,28 +655,96 @@
                 }]
             };
 
-        setInterval(function (){
-            $.ajax({
-                url:"/record/listTotalPeopleRecord",
-                type:"get",
-                dataType:"json",
-                success:function (data) {
-                    
-                        
-                        if(datas.length >10){
-                        	datas.shift();
+            function getFLowRecord(){
+           	 $.ajax({
+           		 url:"/record/listTotalPeopleRecord",
+                 type:"get",
+                 dataType:"json",
+                 success:function (data) {
+                     
+                         
+                         if(datas.length >10){
+                         	datas.shift();
+                         }
+                         datas.push(data.data[0]);
+//                     option1.series[0].data = [[161.2, 51.6,20,'男'], [167.5, 59.0,20,'男'], [159.5, 49.2,20,'男'], [157.0, 63.0,20,'男'], [155.8, 53.6,20,'男']];
+                     option3.series[0].data = datas;
+                     scatterChart2.setOption(option3);
+                 }
+             });
+           }
+           
+            getFLowRecord();
+           
+           setInterval(function (){
+        	   getFLowRecord();
+           }, 2000);
+           
+           
+           var scatterChart3 = echarts.init(document.getElementById("echarts-my5"));
+           var option4 = {
+           	    title : {
+           	        text: '年龄人数分析',
+           	        subtext: 'test',
+           	        x:'center'
+           	    },
+           	    tooltip : {
+           	        trigger: 'item',
+           	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+           	    },
+           	    legend: {
+           	        orient: 'vertical',
+           	        left: 'left',
+           	        data: []
+           	    },
+           	    series : [
+           	        {
+           	            name: '数据统计',
+           	            type: 'pie',
+           	            radius : '55%',
+           	            center: ['50%', '60%'],
+           	            data:[],/* {value:1548, name:'搜索引擎'} */
+           	            itemStyle: {
+           	                emphasis: {
+           	                    shadowBlur: 10,
+           	                    shadowOffsetX: 0,
+           	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+           	                }
+           	            }
+           	        }
+           	    ]
+           	};
+           
+           function getAgeRecord(){
+           	 $.ajax({
+                    url:"/record/getAgeRecord",
+                    type:"get",
+                    dataType:"json",
+                    success:function (data) {
+                        var datas = [];
+                        for(var i = 0;i<data.data.length;i++){
+                         /*    var persons = [];
+                            persons.push(data.data[i].value);
+                            persons.push(data.data[i].name); 
+                            datas.push(persons); */
+                            datas.push(data.data[i].name);
                         }
-                        datas.push(data.data[0]);
-                    
+                        
+                        option4.legend.data = datas;
 
-//                    option1.series[0].data = [[161.2, 51.6,20,'男'], [167.5, 59.0,20,'男'], [159.5, 49.2,20,'男'], [157.0, 63.0,20,'男'], [155.8, 53.6,20,'男']];
-                    option3.series[0].data = datas;
-                    scatterChart2.setOption(option3);
-                    console.log(datas);
-                }
-            });
-        }, 2000);
-
+//                        option1.series[0].data = [[161.2, 51.6,20,'男'], [167.5, 59.0,20,'男'], [159.5, 49.2,20,'男'], [157.0, 63.0,20,'男'], [155.8, 53.6,20,'男']];
+                        option4.series[0].data = data.data;
+                        scatterChart3.setOption(option4);
+                        console.log(data);
+                    }
+                });
+           }
+           
+           getAgeRecord();
+           
+           setInterval(function (){
+              getAgeRecord();
+           }, 2000);
     </script>
 
     
