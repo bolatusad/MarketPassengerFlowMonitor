@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
-import com.xupt.internetplus.bean.RecordSex;
+import com.xupt.internetplus.bean.RecordCount;
 import com.xupt.internetplus.bean.RecordVO;
 import com.xupt.internetplus.dao.RecordDao;
 import com.xupt.internetplus.eunm.SexEunm;
@@ -48,19 +48,35 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public List<RecordSex> listSexRecord() {
+	public List<RecordCount> listSexRecord() {
 		List<Record> records = recordDao.listSexRecord();
-		List<RecordSex> recordSexs = Lists.newArrayList();
+		List<RecordCount> recordSexs = Lists.newArrayList();
 		if (records.size() <= 0) {
 			return recordSexs;
 		}
 		for (Record record : records) {
-			RecordSex recordSex = new RecordSex();
-			recordSex.setCount(record.getCount());
-			recordSex.setGender(SexEunm.getEnum(record.getGender()).getMessage());
+			RecordCount recordSex = new RecordCount();
+			recordSex.setValue(record.getCount());
+			recordSex.setName(SexEunm.getEnum(record.getGender()).getMessage());
 			recordSexs.add(recordSex);
 		}
 		return recordSexs;
+	}
+
+	@Override
+	public List<RecordCount> listAgeRecord() {
+		List<Record> records = recordDao.listAgeRecord();
+		List<RecordCount> recordAges = Lists.newArrayList();
+		if (records.size() <= 0) {
+			return recordAges;
+		}
+		for (Record record : records) {
+			RecordCount recordAge = new RecordCount();
+			recordAge.setValue(record.getCount());
+			recordAge.setName(record.getAge() + "岁");
+			recordAges.add(recordAge);
+		}
+		return recordAges;
 	}
 
 	@Override
@@ -80,4 +96,5 @@ public class RecordServiceImpl implements RecordService {
 		}
 		return passengerFlows;
 	}
+
 }
