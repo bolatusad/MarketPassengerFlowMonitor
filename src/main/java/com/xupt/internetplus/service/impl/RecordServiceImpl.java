@@ -73,7 +73,7 @@ public class RecordServiceImpl implements RecordService {
 		for (Record record : records) {
 			PassengerFlow passengerFlow = new PassengerFlow();
 			List<Object> obj = Lists.newArrayList();
-			obj.add(record.getDetectionTime());
+			obj.add(record.getDetectionTime().getTime());
 			obj.add(record.getCount());
 			passengerFlow.setValue(obj);
 			passengerFlows.add(passengerFlow);
