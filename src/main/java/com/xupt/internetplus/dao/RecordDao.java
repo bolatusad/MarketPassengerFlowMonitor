@@ -3,6 +3,7 @@ package com.xupt.internetplus.dao;
 import java.util.List;
 
 import com.xupt.internetplus.bean.Record;
+import com.xupt.internetplus.bean.RecordCount;
 
 /**
  * 检测记录时间
@@ -27,7 +28,9 @@ public interface RecordDao {
 	 */
 	List<Record> listSexRecord();
 
-	List<Record> listAgeRecord();
+	List<RecordCount> listAgeRecord();
 
 	List<Record> listTotalPeopleRecord();
+
+	List<Record> listHotPowerRecord();
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;
@@ -65,18 +66,8 @@ public class RecordServiceImpl implements RecordService {
 
 	@Override
 	public List<RecordCount> listAgeRecord() {
-		List<Record> records = recordDao.listAgeRecord();
-		List<RecordCount> recordAges = Lists.newArrayList();
-		if (records.size() <= 0) {
-			return recordAges;
-		}
-		for (Record record : records) {
-			RecordCount recordAge = new RecordCount();
-			recordAge.setValue(record.getCount());
-			recordAge.setName(record.getAge() + "岁");
-			recordAges.add(recordAge);
-		}
-		return recordAges;
+		List<RecordCount> records = recordDao.listAgeRecord();
+		return records;
 	}
 
 	@Override
@@ -95,6 +86,18 @@ public class RecordServiceImpl implements RecordService {
 			passengerFlows.add(passengerFlow);
 		}
 		return passengerFlows;
+	}
+
+	@Override
+	public List<HotPower> listHotPowerRecord() {
+		List<Record> records = recordDao.listHotPowerRecord();
+		List<HotPower> hotPowers = Lists.newArrayList();
+		for (Record record : records) {
+			for (HotPower hotPower : hotPowers) {
+				if()
+			}
+		}
+		return hotPowers;
 	}
 
 }

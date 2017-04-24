@@ -22,12 +22,28 @@
 		select gender,count(gender) as count from record group by gender
 	</select>
 	
-	<select id="listAgeRecord" resultType="com.xupt.internetplus.bean.Record"  >
-		select age,count(age) as count from record group by age
+	<select id="listAgeRecord" resultType="com.xupt.internetplus.bean.RecordCount"  >
+		select nnd as name,count(*) as value from
+		(
+		select
+		case
+		when age>=1 and 10>=age then '1-10岁'
+		when age>=11 and 20>=age then '11-20岁'
+		when age>=21 and 30>=age then '21-30岁'
+		when age>=31 and 40>=age then '31-40岁' else '其他'
+		end
+		as nnd,age from record
+		)
+		a
+		group by nnd
 	</select>
 	
 	<select id="listTotalPeopleRecord" resultType="com.xupt.internetplus.bean.Record"  >
 		select detection_time as detectionTime,count(1) as count from record where detection_time=(SELECT MAX(detection_time) FROM record)
+	</select>
+	
+	<select id="listHotPowerRecord" resultType="com.xupt.internetplus.bean.Record"  >
+		select detection_x, detection_y from record
 	</select>
 	
 	<!--<insert id="addTestUser" parameterType="com.xupt.zxh.graduation.project.bean.TestUser">-->

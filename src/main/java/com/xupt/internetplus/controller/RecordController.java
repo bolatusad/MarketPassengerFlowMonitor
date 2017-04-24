@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;
@@ -59,6 +60,15 @@ public class RecordController {
 		ResponseInfo responseInfo = new ResponseInfo();
 		List<PassengerFlow> passengerFlows = recordService.listTotalPeopleRecord();
 		responseInfo.setData(passengerFlows);
+		return responseInfo;
+	}
+
+	@RequestMapping(value = "/listHotPowerRecord", method = RequestMethod.GET, produces = {
+			"application/json;charset=UTF-8" })
+	public @ResponseBody ResponseInfo listHotPowerRecord() {
+		ResponseInfo responseInfo = new ResponseInfo();
+		List<HotPower> sotPowers = recordService.listHotPowerRecord();
+		responseInfo.setData(sotPowers);
 		return responseInfo;
 	}
 }
