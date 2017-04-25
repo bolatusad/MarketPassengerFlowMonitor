@@ -2,7 +2,6 @@ package com.xupt.internetplus.service;
 
 import java.util.List;
 
-import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;

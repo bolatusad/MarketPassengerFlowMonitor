@@ -2,13 +2,14 @@ package com.xupt.internetplus.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;
@@ -25,6 +26,8 @@ public class RecordController {
 
 	@Autowired
 	private RecordService recordService;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping(value = "/getAllRecord", method = RequestMethod.GET, produces = {
 			"application/json;charset=UTF-8" })

@@ -1,9 +1,9 @@
 package com.xupt.internetplus.eunm;
 
 public enum SexEunm {
-	MALE(1, "男"),
+	MALE(0, "男"),
 
-	FAMALE(2, "女");
+	FAMALE(1, "女");
 
 	private SexEunm(Integer code, String message) {
 		this.code = code;

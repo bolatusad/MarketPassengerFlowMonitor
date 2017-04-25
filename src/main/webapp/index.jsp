@@ -81,7 +81,7 @@
                             <a class="J_menuItem" href="graph_hotpower.html">人流量热力图</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
+                            <a class="J_menuItem" href="graph_genderandcount.html">性别&人流量统计图</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="graph_metrics.html">图表组合</a>

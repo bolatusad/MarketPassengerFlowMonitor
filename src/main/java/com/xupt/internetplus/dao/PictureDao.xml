@@ -9,7 +9,7 @@
 	
 	<!-- 查询最新的照片 -->
 	<select id="listNewPicture" resultType="com.xupt.internetplus.bean.Picture"  >
-		SELECT * FROM picture WHERE createtime=(SELECT MAX(createtime) FROM picture)
+		SELECT * FROM picture <!-- WHERE createtime=(SELECT MAX(createtime) FROM picture) -->
 	</select>
 	
 </mapper>

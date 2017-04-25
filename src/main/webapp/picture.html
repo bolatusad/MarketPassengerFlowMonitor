@@ -79,18 +79,17 @@
             for(var i =0;i<data.length;i++){
                 arrPicture.push(data[i]);
             }
+            //替换图片
+            setInterval(function () {
+            	var temp = arrPicture.shift();
+                $("#video").attr("src","/video/path?path="+temp);
+                console.log(temp);
+            },50)
         }
     });
-    console.log(arrPicture);
-
-    //替换图片
-    setInterval(function () {
-        $("#video").attr("src","/video/path?path="+arrPicture.shift());
-    },100)
-
-    //判断图片缓存是否过低
-    setInterval(function () {
-        if(arrPicture.length<5){
+	
+    function getPicture(){
+    	if(arrPicture.length<5){
             $.ajax({
                /* url:"/video/picture/1", */
                 url:"/video/picture/",
@@ -102,7 +101,8 @@
                 }
             });
         }
-    },50)
+    }
+ 
 </script>
 
 
