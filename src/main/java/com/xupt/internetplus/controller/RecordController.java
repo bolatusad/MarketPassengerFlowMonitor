@@ -67,8 +67,8 @@ public class RecordController {
 			"application/json;charset=UTF-8" })
 	public @ResponseBody ResponseInfo listHotPowerRecord() {
 		ResponseInfo responseInfo = new ResponseInfo();
-		List<HotPower> sotPowers = recordService.listHotPowerRecord();
-		responseInfo.setData(sotPowers);
+		List<Object> hotPowers = recordService.listHotPowerRecord();
+		responseInfo.setData(hotPowers);
 		return responseInfo;
 	}
 }

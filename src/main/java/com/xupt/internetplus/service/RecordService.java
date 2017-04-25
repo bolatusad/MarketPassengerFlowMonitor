@@ -38,5 +38,5 @@ public interface RecordService {
 
 	List<PassengerFlow> listTotalPeopleRecord();
 
-	List<HotPower> listHotPowerRecord();
+	List<Object> listHotPowerRecord();
 }

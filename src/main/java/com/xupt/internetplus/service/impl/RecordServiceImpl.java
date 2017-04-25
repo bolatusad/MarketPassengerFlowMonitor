@@ -1,8 +1,11 @@
 package com.xupt.internetplus.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ import com.xupt.internetplus.bean.RecordVO;
 import com.xupt.internetplus.dao.RecordDao;
 import com.xupt.internetplus.eunm.SexEunm;
 import com.xupt.internetplus.service.RecordService;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by 张涛 on 2017/4/15.
@@ -89,15 +94,36 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	@Override
-	public List<HotPower> listHotPowerRecord() {
+	public List<Object> listHotPowerRecord() {
 		List<Record> records = recordDao.listHotPowerRecord();
-		List<HotPower> hotPowers = Lists.newArrayList();
+		Map<String,Integer> tempHotPictureData = new HashMap<>();
 		for (Record record : records) {
-			for (HotPower hotPower : hotPowers) {
-				// hotPower.setX(x);
+			Double x = record.getDetectionX();
+			Double y = record.getDetectionY();
+			//暂定分块为100*100的正方形
+			Integer resultX = x.intValue()/100*100+50;
+			Integer resultY = y.intValue()/100*100+50;
+			String key = resultX+"_"+resultY;
+			Integer sum = tempHotPictureData.get(key);
+			//判断map中是否已经存在这个点，如果已经存在，就给sum加1；不存在就放入一项
+			if(sum == null){
+				tempHotPictureData.put(key,1);
+			}else {
+				tempHotPictureData.replace(key,sum,sum++);
 			}
 		}
-		return hotPowers;
+		//遍历Map，将数据填入
+		List<Object> hotPictureDatas = new ArrayList<Object>();
+		for(String key:tempHotPictureData.keySet()){
+			List<Object> hotPictureData = new ArrayList<Object>();
+			String[] tempXY = key.split("_");
+			hotPictureData.add(tempXY[0]);
+			hotPictureData.add(tempXY[1]);
+			hotPictureData.add(tempHotPictureData.get(key));
+			hotPictureDatas.add(hotPictureData);
+		}
+
+		return hotPictureDatas;
 	}
 
 }
