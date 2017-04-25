@@ -94,7 +94,7 @@ public class RecordServiceImpl implements RecordService {
 		List<HotPower> hotPowers = Lists.newArrayList();
 		for (Record record : records) {
 			for (HotPower hotPower : hotPowers) {
-
+				// hotPower.setX(x);
 			}
 		}
 		return hotPowers;
