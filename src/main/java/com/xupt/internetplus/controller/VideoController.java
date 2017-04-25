@@ -73,7 +73,7 @@ public class VideoController {
 		pictures = pictrueService.listNewPicture();
 		List<String> imgs = Lists.newArrayList();
 		for (Picture picture : pictures) {
-			imgs.add(picture.getLocalPath());
+			imgs.add(picture.getPath());
 		}
 		return imgs;
 	}

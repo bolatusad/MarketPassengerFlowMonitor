@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50140
 File Encoding         : 65001
 
-Date: 2017-04-22 23:39:10
+Date: 2017-04-25 19:33:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,25 +21,24 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `picture`;
 CREATE TABLE `picture` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `path` varchar(255) NOT NULL COMMENT '图片路径',
   `camera` tinyint(4) NOT NULL COMMENT '摄像头',
   `createtime` datetime NOT NULL COMMENT '时间',
-  `localpath` varchar(255) DEFAULT NULL COMMENT '本地地址',
+  `path` varchar(255) NOT NULL COMMENT '图片本地地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of picture
 -- ----------------------------
-INSERT INTO `picture` VALUES ('1', '/img/profile.jpg', '1', '2017-04-17 19:51:05', 'C:\\Users\\WangZelan\\git\\picture\\profile.jpg');
-INSERT INTO `picture` VALUES ('2', '/img/profile_small.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\profile_small.jpg');
-INSERT INTO `picture` VALUES ('3', '/img/p1.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\p1.jpg');
-INSERT INTO `picture` VALUES ('4', '/img/a5.jpg', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
-INSERT INTO `picture` VALUES ('5', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
-INSERT INTO `picture` VALUES ('6', '6', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
-INSERT INTO `picture` VALUES ('7', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
-INSERT INTO `picture` VALUES ('8', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
-INSERT INTO `picture` VALUES ('9', '1', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('1', '1', '2017-04-17 19:51:05', 'C:\\Users\\WangZelan\\git\\picture\\profile.jpg');
+INSERT INTO `picture` VALUES ('2', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\profile_small.jpg');
+INSERT INTO `picture` VALUES ('3', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\p1.jpg');
+INSERT INTO `picture` VALUES ('4', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('5', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('6', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('7', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('8', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
+INSERT INTO `picture` VALUES ('9', '1', '2017-04-17 19:51:48', 'C:\\Users\\WangZelan\\git\\picture\\a5.jpg');
 
 -- ----------------------------
 -- Table structure for record
@@ -61,12 +60,20 @@ CREATE TABLE `record` (
 -- ----------------------------
 -- Records of record
 -- ----------------------------
-INSERT INTO `record` VALUES ('1', '2017-04-15 22:14:55', 'main', '100', '96', '20', '20.3', '1', '20');
+INSERT INTO `record` VALUES ('1', '2017-04-15 22:14:55', 'main', '100', '96', '20', '20.3', '1', '50');
+INSERT INTO `record` VALUES ('10', '2017-04-23 23:35:35', 'ddd', '5', '110', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('11', '2017-04-23 23:35:35', 'ddd', '5', '110', '89', '90', '1', '30');
+INSERT INTO `record` VALUES ('12', '2017-04-23 23:35:35', 'ddd', '5', '110', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('13', '2017-04-23 23:35:35', 'ddd', '5', '110', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('14', '2017-04-23 23:35:35', 'ddd', '5', '110', '89', '90', '1', '20');
 INSERT INTO `record` VALUES ('2', '2017-04-15 22:14:55', 'main', '102', '25', '20', '20', '1', '30');
 INSERT INTO `record` VALUES ('3', '2017-04-15 22:14:55', 'main', '50', '60', '20', '20', '2', '25');
-INSERT INTO `record` VALUES ('4', '2017-04-15 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
-INSERT INTO `record` VALUES ('5', '2017-04-22 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
-INSERT INTO `record` VALUES ('6', '2017-04-23 23:54:37', 'ddd', '60', '150', '20', '20', '2', '26');
+INSERT INTO `record` VALUES ('4', '2017-04-23 23:35:35', 'main', '50', '60', '20', '20', '1', '20');
+INSERT INTO `record` VALUES ('5', '2017-04-23 23:35:35', 'main', '50', '60', '20', '20', '1', '20');
+INSERT INTO `record` VALUES ('6', '2017-04-23 23:35:35', 'ddd', '5', '250', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('7', '2017-04-23 23:35:35', 'ddd', '5', '50', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('8', '2017-04-23 23:35:35', 'ddd', '5', '50', '89', '90', '1', '20');
+INSERT INTO `record` VALUES ('9', '2017-04-23 23:35:35', 'ddd', '5', '50', '89', '90', '2', '20');
 
 -- ----------------------------
 -- Table structure for t_user
