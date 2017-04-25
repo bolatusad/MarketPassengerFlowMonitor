@@ -43,7 +43,7 @@
 	</select>
 	
 	<select id="listHotPowerRecord" resultType="com.xupt.internetplus.bean.Record"  >
-		select detection_x, detection_y from record
+		select detection_x as detectionX, detection_y as detectionY from record where detection_time=(SELECT MAX(detection_time) FROM record)
 	</select>
 	
 	<!--<insert id="addTestUser" parameterType="com.xupt.zxh.graduation.project.bean.TestUser">-->

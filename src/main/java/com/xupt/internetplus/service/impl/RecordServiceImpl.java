@@ -5,12 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
-import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;
@@ -18,8 +16,6 @@ import com.xupt.internetplus.bean.RecordVO;
 import com.xupt.internetplus.dao.RecordDao;
 import com.xupt.internetplus.eunm.SexEunm;
 import com.xupt.internetplus.service.RecordService;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by 张涛 on 2017/4/15.
@@ -96,25 +92,28 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public List<Object> listHotPowerRecord() {
 		List<Record> records = recordDao.listHotPowerRecord();
-		Map<String,Integer> tempHotPictureData = new HashMap<>();
+		Map<String, Integer> tempHotPictureData = new HashMap<>();
 		for (Record record : records) {
 			Double x = record.getDetectionX();
 			Double y = record.getDetectionY();
-			//暂定分块为100*100的正方形
-			Integer resultX = x.intValue()/100*100+50;
-			Integer resultY = y.intValue()/100*100+50;
-			String key = resultX+"_"+resultY;
+			// 暂定分块为100*100的正方形
+			Integer resultX = x.intValue() / 100 * 100 + 50;
+			Integer resultY = y.intValue() / 100 * 100 + 50;
+			String key = resultX + "_" + resultY;
 			Integer sum = tempHotPictureData.get(key);
-			//判断map中是否已经存在这个点，如果已经存在，就给sum加1；不存在就放入一项
-			if(sum == null){
-				tempHotPictureData.put(key,1);
-			}else {
-				tempHotPictureData.replace(key,sum,sum++);
+			// 判断map中是否已经存在这个点，如果已经存在，就给sum加1；不存在就放入一项
+			if (sum == null) {
+				tempHotPictureData.put(key, 1);
+			} else {
+				tempHotPictureData.remove(key);
+				sum = sum + 1;
+				tempHotPictureData.put(key, sum);
+				// tempHotPictureData.replace(key, sum, sum++);
 			}
 		}
-		//遍历Map，将数据填入
+		// 遍历Map，将数据填入
 		List<Object> hotPictureDatas = new ArrayList<Object>();
-		for(String key:tempHotPictureData.keySet()){
+		for (String key : tempHotPictureData.keySet()) {
 			List<Object> hotPictureData = new ArrayList<Object>();
 			String[] tempXY = key.split("_");
 			hotPictureData.add(tempXY[0]);
