@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.xupt.internetplus.bean.HotPower;
 import com.xupt.internetplus.bean.PassengerFlow;
 import com.xupt.internetplus.bean.Record;
 import com.xupt.internetplus.bean.RecordCount;
@@ -116,10 +117,15 @@ public class RecordServiceImpl implements RecordService {
 		for (String key : tempHotPictureData.keySet()) {
 			List<Object> hotPictureData = new ArrayList<Object>();
 			String[] tempXY = key.split("_");
-			hotPictureData.add(tempXY[0]);
-			hotPictureData.add(tempXY[1]);
-			hotPictureData.add(tempHotPictureData.get(key));
-			hotPictureDatas.add(hotPictureData);
+			// hotPictureData.add(tempXY[0]);
+			// hotPictureData.add(tempXY[1]);
+			// hotPictureData.add(tempHotPictureData.get(key));
+			// hotPictureDatas.add(hotPictureData);
+			HotPower hotPower = new HotPower();
+			hotPower.setX(Integer.valueOf(tempXY[0]));
+			hotPower.setY(Integer.valueOf(tempXY[1]));
+			hotPower.setValue(tempHotPictureData.get(key));
+			hotPictureDatas.add(hotPower);
 		}
 
 		return hotPictureDatas;

@@ -15,11 +15,11 @@
 			gender,
 			age
 		from
-			record
+			record where detection_time=(SELECT MAX(detection_time) FROM record)
 	</select>
 	
 	<select id="listSexRecord" resultType="com.xupt.internetplus.bean.Record"  >
-		select gender,count(gender) as count from record group by gender
+		select gender,count(gender) as count from record where detection_time=(SELECT MAX(detection_time) FROM record) group by gender
 	</select>
 	
 	<select id="listAgeRecord" resultType="com.xupt.internetplus.bean.RecordCount"  >
@@ -32,10 +32,10 @@
 		when age>=21 and 30>=age then '21-30岁'
 		when age>=31 and 40>=age then '31-40岁' else '其他'
 		end
-		as nnd,age from record
+		as nnd,age from record where detection_time=(SELECT MAX(detection_time) FROM record)
 		)
 		a
-		group by nnd
+		group by nnd 
 	</select>
 	
 	<select id="listTotalPeopleRecord" resultType="com.xupt.internetplus.bean.Record"  >

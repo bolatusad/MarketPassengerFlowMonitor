@@ -78,7 +78,7 @@
                             <a class="J_menuItem" href="graph_age.html">年龄分布图</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_peity.html">Peity</a>
+                            <a class="J_menuItem" href="graph_hotpower.html">人流量热力图</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
