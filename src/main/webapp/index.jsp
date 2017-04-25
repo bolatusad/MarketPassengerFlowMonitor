@@ -61,21 +61,21 @@
                 <li>
                     <a href="#">
                         <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">客流量</span>
+                        <span class="nav-label">客流量图表</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="graph_echarts.html">百度ECharts</a>
+                            <a class="J_menuItem" href="graph_passengerflow.html">人流分布图</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                            <a class="J_menuItem" href="graph_gender.html">性别人数分析图</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_morris.html">Morris.js</a>
+                            <a class="J_menuItem" href="graph_passengercount.html">人流量统计图</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>
+                            <a class="J_menuItem" href="graph_age.html">年龄分布图</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="graph_peity.html">Peity</a>

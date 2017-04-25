@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人流分布图</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!--自己的图表开始-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>人流分布图</h5>
+                    </div>
+                    <div class="ibox-content" >
+                        <div class="echarts" id="echarts-my" ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- ECharts -->
+    <script src="js/plugins/echarts/echarts.js"></script>
+    <!--<script src="js/plugins/echarts/echarts.js"></script>-->
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+    <script src="js/plugins/echarts/vintage.js"></script>
+    <!-- ECharts demo data -->
+    <!--<script src="js/demo/echarts-demo.js"></script>-->
+    <script type="text/javascript">
+        var scatterChart = echarts.init(document.getElementById("echarts-my"));
+        var option = {
+            title : {
+                text: '人流量分布'
+            },
+            grid: {
+                left: '5%',
+                right: '7%',
+                bottom: '3%',
+                containLabel: true
+            },
+            tooltip : {
+                showDelay : 0,
+                formatter : function (params) {
+                    if (params.value.length > 1) {
+                        return params.seriesName + ' :<br/>'
+                            + '年龄：'+ params.value[2] + '<br/>'
+                            + '性别：'+ params.value[3];
+                    }
+
+                }
+            },
+            legend: {
+                data: ['行人'],
+                left: 'center'
+            },
+            xAxis : [
+                {
+                    type : 'value',
+                    scale:true,
+                    position:'top',
+                    splitLine: {
+                        show: false
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    scale:true,
+                    inverse:true,
+                    splitLine: {
+                        show: false
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'行人',
+                    type:'scatter',
+                    data: []
+                }
+            ]
+        };
+		function getRecord(){
+            $.ajax({
+                url:"/record/getAllRecord",
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                    var datas = [];
+                    for(var i = 0;i<data.data.length;i++){
+                        var persons = [];
+                        persons.push(data.data[i].x);
+                        persons.push(data.data[i].y);
+                        persons.push(data.data[i].age);
+                        persons.push(data.data[i].gender);
+                        datas.push(persons);
+                    }
+                    option.series[0].data = datas;
+                    scatterChart.setOption(option);
+                }
+            });
+        }
+		getRecord();
+        setInterval(function (){
+    	   getRecord();
+       }, 2000);
+    </script>
+</body>
+</html>
